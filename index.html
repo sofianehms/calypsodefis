@@ -28,7 +28,7 @@
                 return;
             }
 
-            fetch("https://tonserveur.onrender.com/ajouter", {
+            fetch("http://127.0.0.1:5000/ajouter", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ nom: nom, defi: defi })
