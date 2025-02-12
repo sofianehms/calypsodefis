@@ -28,11 +28,12 @@
                 return;
             }
 
-            fetch("http://127.0.0.1:5000/ajouter", {
+            fetch("https://tonserveur.onrender.com/ajouter", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ nom: nom, defi: defi })
             })
+
             .then(response => response.json())
             .then(data => document.getElementById("message").innerText = data.message)
             .catch(error => document.getElementById("message").innerText = "Erreur lors de l'envoi.");
