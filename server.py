@@ -23,5 +23,4 @@ def ajouter():
     return jsonify({"message": "Données enregistrées avec succès"}), 200
 
 if __name__ == '__main__':
-    print("✅ Serveur en cours d'exécution sur http://127.0.0.1:5000/")
     app.run(debug=True)
