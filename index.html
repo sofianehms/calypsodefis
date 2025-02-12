@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un défi</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input, button { margin: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>Ajoutez votre défi</h2>
+    <input type="text" id="nom" placeholder="Votre nom" required>
+    <input type="text" id="defi" placeholder="Votre défi" required>
+    <button onclick="envoyerDonnees()">Envoyer</button>
+    
+    <p id="message"></p>
+
+    <script>
+        function envoyerDonnees() {
+            let nom = document.getElementById("nom").value;
+            let defi = document.getElementById("defi").value;
+
+            if (!nom || !defi) {
+                document.getElementById("message").innerText = "Veuillez remplir tous les champs.";
+                return;
+            }
+
+            fetch("http://127.0.0.1:5000/ajouter", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nom: nom, defi: defi })
+            })
+            .then(response => response.json())
+            .then(data => document.getElementById("message").innerText = data.message)
+            .catch(error => document.getElementById("message").innerText = "Erreur lors de l'envoi.");
+        }
+    </script>
+
+</body>
+</html>
